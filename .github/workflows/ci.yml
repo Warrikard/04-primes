@@ -19,7 +19,6 @@ jobs:
     steps:
 
     - uses: actions/checkout@v4
-    
     - name: Set up Python 3.10
       uses: actions/setup-python@v5
       with:
@@ -132,3 +131,4 @@ jobs:
         fi
         pylint_score=$(echo "scale=2; $score / 10" | bc)
         echo "pylint_score=$pylint_score" >> $GITHUB_OUTPUT
+        

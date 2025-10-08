@@ -1,43 +1,38 @@
 > [!CAUTION]
 Ce travail s'effectue dans [l'environnement Github](https://perso.esiee.fr/~courivad/courses/utils/misc-01-github-environment.html)
 
-# Liste de Syracuse
+# Palindromes
 
-Cet exercice est la continuité d'un exercice précédent sur [les suites de Syracuse](https://perso.esiee.fr/~courivad/courses/exercices/ex04-suites-syracuse.html) dans lequel vous retrouverez la définition des grandeurs caractéristiques utilisées dans cet exercice. Précédemment, les valeurs de la suite étaient calculées à la volée sans mémorisation. L'objectif est ici de les stocker dans une liste pour post traitement.
+Un [palindrome(https://fr.wikipedia.org/wiki/Palindrome)] est un mot ou une phrase qui se lit indifféremment de droite à gauche et de gauche à droite. L'objectif est d'écrire du code qui permet de vérifier si une chaine de caractère est un palindrome ou pas.
 
 Le fichier ``main.py`` contient :
 
-- une fonction secondaire ``syr_plot()`` (NE PAS MODIFIER) qui permet de construire un graphique. 
-
-- une fonction secondaire ``syracuse_l()``
+- une fonction secondaire ``ispalindrome()`` qui a pour but de vérifier si un mot est un palindrome ou pas. 
   
-  - qui prend en argument un entier ``n`` ;
-  - et retourne la liste des valeurs de la suite.
-
-  Pour ``n=3``, les valeurs de la suite sont ``[3, 10, 5, 16, 8, 4, 2, 1]``.
-
-- une fonction secondaire ``temps_de_vol()``
+  - elle prend en argument une chaine de caractères ``s`` ;
+  - et retourne un booléen exprimant la vérité de « ``s`` est un palindrome ».
   
-  - qui prend en argument une liste de Syracuse ``l`` ;
-  - et retourne son temps de vol.
+- la fonction principale ``main()`` qui fait quelques appels à la fonction secondaire permettant de vérifier son bon fonctionnement .
 
-  Pour ``n=3``, le temps de vol est ``7``.
+## Informations complémentaires
 
-- une fonction secondaire ``temps_de_vol_en_altitude()``
-  
-  - qui prend en argument une liste de Syracuse ``l`` ;
-  - et retourne son temps de vol en altitude.
+Il existe plusieurs stratégies pour résoudre le problème.
 
-  Pour ``n=3``, le temps de vol en altitude est ``5``.
+### Algorithme itératif
 
-- une fonction secondaire ``altitude_maximale()``
-  
-  - qui prend en argument une liste de Syracuse ``l`` ;
-  - et retourne son altitude maximale.
+On peut utiliser un algorithme itératif "bas niveau" en parcourant les caractères de la chaîne simultanément à partir du début et de la fin. Le terme "bas niveau" est employé parce que la solution s'intéresse aux éléments constitutifs de la chaîne de caractère, pas à la chaîne elle même. Cet algorithme fonctionne mais ne tire pas partie des fonctionnalités de Python.
 
-  Pour ``n=3``, l'altitude maximale est ``16``.
+### Approche "haut niveau"
 
-- la fonction principale ``main()`` qui fait appel aux fonctions secondaires pour vérifier leur bon fonctionnement .
+Une approche "haut niveau" ou *pythonique* va a contrario considérer la chaîne de caractère comme l'élément de base. Elle ne nécessite donc pas d'itérations.On utilise exclusivement le slicing et les [méthodes de chaines de caractères](https://docs.python.org/3/library/stdtypes.html#string-methods). Lesquelles ? Cette façon de faire est plus concise, plus performante et doit être privilégiée.
+
+### Algorithme récursif
+
+On peut également utiliser la récursivité. Quels sont les cas de base ? Quel est l'appel récursif ?
+
+### Le problème des caractères accentués
+
+Avant de tester le caractère palindromique de la chaine de caractères, les caractères accentués qui la composent devront être "désaccentués". Ce peut être fait par un enchainement de méthodes ``replace()`` mais le problème sera plus élégamment traité avec la méthode [translate()](https://docs.python.org/3/library/stdtypes.html#str.translate).
 
 <!-- START INSERT -->
 
