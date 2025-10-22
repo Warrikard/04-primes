@@ -19,6 +19,7 @@ def syr_plot(lsyr):
     fig.add_trace(t)
     fig.show()
     fig.write_html('fig.html', include_plotlyjs='cdn')
+
     return None
 #######################
 
@@ -42,7 +43,7 @@ def syracuse_l(n):
         n = n // 2
     else:
         n = 3 * n + 1
-
+    
     l = l + syracuse_l(n)
     return l
 
@@ -72,9 +73,14 @@ def temps_de_vol_en_altitude(l):
 
     # votre code ici
     n = 0
-    for i in range(len(l)-1):
-        if l[i] > l[0]:
+    if not l:
+        return 0
+    
+    for i in l[1:] :
+        if i > l[0]:
             n += 1
+        else:
+            break  
     return n
 
 
@@ -102,7 +108,7 @@ def altitude_maximale(l):
 def main():
 
     # vos appels à la fonction secondaire ici
-    lsyr = syracuse_l(15)
+    lsyr = syracuse_l(6)
     syr_plot(lsyr)
     print(temps_de_vol(lsyr))
     print(temps_de_vol_en_altitude(lsyr))
