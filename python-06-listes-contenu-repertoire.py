@@ -3,6 +3,7 @@ import os
 # Exercice 6.1 Contenu d'un rÃ©pertoire
 
 def scand(r):
+
     """
     SÃ©pare les fichiers et les rÃ©pertoires du rÃ©pertoire passÃ© en argument
 
@@ -12,7 +13,7 @@ def scand(r):
     Returns:
         Liste des noms de fichier sous forme de chaine de caractÃ¨res
         Liste des noms de rÃ©pertoire sous forme de chaine de caractÃ¨res
-    >>> f, d = scand('C:\Windows')
+    >>> f, d = scand('/home/codespace')
     >>> isinstance(f, list) # vrai si f est une liste
     True
     >>> len(f) == 0
@@ -27,9 +28,9 @@ def scand(r):
 
     # crÃ©er la liste du contenu du rÃ©pertoire
     # une list comprehension f pour filtrer les fichiers
-    f = []
+    f = [name for name in os.listdir(r) if os.path.isfile(os.path.join(r, name))]
     # une list comprehension d pour filtrer les rÃ©pertoires
-    d = []
+    d = [name for name in os.listdir(r) if os.path.isdir(os.path.join(r, name))]
     return f, d
     
 
@@ -37,9 +38,9 @@ def scand(r):
 def main():
     # votre code de test ici...
     # Exemple
-    # f, d = scand('C:\Windows')
-    # print(f)
-    # print(d)
+    f, d = scand('/home/codespace')
+    print(f)
+    print(d)
     pass
 
 if __name__ == '__main__':
